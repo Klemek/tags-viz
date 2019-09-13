@@ -27,6 +27,7 @@ function processData() {
   });
 
   const dataKeys = Object.keys(data);
+  const added = [];
   const links = [];
 
   const graphData = {
@@ -44,7 +45,7 @@ function processData() {
       y:Math.random(),
     });
     data[key].forEach(function(target){
-      if(!dataKeys.includes(target)){
+      if(!dataKeys.includes(target) && !added.includes(target)){
         graphData.nodes.push({
           id: target,
           label: target,
@@ -53,6 +54,7 @@ function processData() {
           x:Math.random(),
           y:Math.random(),
         });
+        added.push(target);
       }
       let a = key < target ? key : target;
       let b = key < target ? target : key;
